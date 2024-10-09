@@ -8,8 +8,6 @@ connectToDB();
 export async function GET(request: NextRequest) {
     try {
         const userId = await GetIdFromToken(request)
-        console.log(userId);
-
         const user = await userModel.findOne({ _id: userId })
         return NextResponse.json({
             message: 'User',

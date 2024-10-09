@@ -58,22 +58,27 @@ export const LoginButtons = () => {
 
     return (
         <div>
-            <div className="flex items-center justify-center">
+            <div>
                 <div>
                     {isLoggedIn && (
-                        <Link href={'/login'} className="flex h-[600px] items-center justify-center w-screen">
-                            <span className="rounded-sm px-5 py-[10px] bg-[#0056d2] text-white source-sans-3-bold hover:bg-[#00419e] transition-all ease-in-out duration-300">
-                                Login / Register
-                            </span>
-                        </Link>
+                        <div>
+                            <Link href={'/login'}>
+                                <span className="rounded-md px-10 py-[16px] bg-[#0056d2] text-white source-sans-3-bold hover:bg-[#00419e] transition-all ease-in-out duration-300">
+                                    Login / Register
+                                </span>
+                            </Link>
+                        </div>
                     )}
                 </div>
-                <div className="flex pr-7 w-screen">
+                <div>
                     {!isLoggedIn && (
-                        <div className="flex h-[600px] items-center justify-center w-full">
-                            <button className="rounded-sm px-5 py-[10px] bg-[#0056d2] text-white source-sans-3-regular text-xl hover:bg-[#00419e] transition-all ease-in-out duration-300" onClick={logout}>
+                        <div className="flex gap-x-6">
+                            <button className="rounded-md px-10 py-[10px] bg-[#0056d2] text-white source-sans-3-regular text-xl hover:bg-[#00419e] transition-all ease-in-out duration-300" onClick={logout}>
                                 Logout
                             </button>
+                            <Link href={'/profile'} className="rounded-md px-10 py-[10px] bg-[#0056d2] text-white source-sans-3-regular text-xl hover:bg-[#00419e] transition-all ease-in-out duration-300">
+                                Profile
+                            </Link>
                         </div>
                     )}
                 </div>
