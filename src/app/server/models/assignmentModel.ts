@@ -1,11 +1,14 @@
 import { Schema, model, models } from "mongoose";
 
 const assignmentSchema = new Schema({
-    // userName: {
-    //     type: String,
-    //     required: [true, 'Please provide user name'],
-    //     trim: true
-    // },
+    userName: {
+        type: String,
+        required: [true, 'Please provide user name'],
+    },
+    adminName: {
+        type: String,
+        required: [true, 'Please provide admin name'],
+    },
     admin: {
         type: String,
         required: [true, "Please provide admin name"],

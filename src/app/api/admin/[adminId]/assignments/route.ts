@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import jwt from 'jsonwebtoken'
-import { GetToken } from "@/app/helpers/getToken";
 import assignmentModel from "@/app/server/models/assignmentModel";
 
 export async function GET(request: NextRequest, {
     params }: { params: { adminId: string } }
 ) {
     try {
-        const adminName = params.adminId;
+        const adminId = params.adminId;
         const assignments = await assignmentModel.find({
-            'admin': adminName
+            'admin': adminId
         });
 
         return NextResponse.json({

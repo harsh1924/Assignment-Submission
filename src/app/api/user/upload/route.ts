@@ -1,4 +1,5 @@
 import assignmentModel from "@/app/server/models/assignmentModel";
+import userModel from "@/app/server/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -11,14 +12,15 @@ export async function POST(request: NextRequest) {
             }, { status: 400 })
         }
 
-        console.log(userName);
-        
+        const adminn = await userModel.findById(admin);
+        const adminName = adminn.name;
 
         const assignment = new assignmentModel({
             admin,
             assignmentText,
             userName,
-            userId
+            userId,
+            adminName
         });
         await assignment.save();
 

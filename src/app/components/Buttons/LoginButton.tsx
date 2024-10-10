@@ -53,7 +53,7 @@ export const LoginButtons = () => {
         if (role == 'ADMIN') {
             setIsAdmin(true)
         }
-        setIsLoading(false);
+        setIsLoading(true);
     }
 
     useEffect(() => {
@@ -62,7 +62,7 @@ export const LoginButtons = () => {
 
     return (
         <div>
-            {isLoading ? (
+            {!isLoading ? (
                 <LoadingState />
             ) : (
                 <div>

@@ -45,16 +45,13 @@ const ProfilePage = () => {
             userId: userId
         })
         setIsLoading(false);
-        // if (userRole === 'ADMIN') {
-        //     setIsAdmin(true)
-        // }
     }
 
     const onSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try {
             const res = await axios.post('/api/user/upload', data);
-            if (res) toast.success('ok')
+            if (res) toast.success('Assignment Submitted')
         } catch (error: any) {
             toast.error(error.response.data.error);
         }
@@ -92,7 +89,7 @@ const ProfilePage = () => {
                                         Select Admin
                                     </option>
                                     {admins.map((e: { name: string; _id: string }) =>
-                                        <option key={e._id} value={e.name}>
+                                        <option key={e._id} value={e._id}>
                                             {e.name}
                                         </option>
                                     )}
