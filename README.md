@@ -1,8 +1,17 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is an Assignment for the Backend Intern Position at GrowthX
+
+## Instructions
+Both Frontend and Backend parts are implemented for better testing and visualization.
+
+As the assignment was for backend intern position, the main focus is on backend part rather than frontend. UI is simple just to understand the working of api and user management.
+
+For this specific project, env file data like Database URI and JWT secret key are hardcoded rather than using .env file.
+
+This project is created in Next.js
 
 ## Getting Started
 
-First, run the development server:
+First, run the development server using any of these commands:
 
 ```bash
 npm run dev
@@ -14,26 +23,63 @@ pnpm dev
 bun dev
 ```
 
+Install required dependencies using ``` npm i, yarn i ```
+
+# BACKEND
+-- Database Connection and Schema are created under `src/app/server` folder.
+
+**API CALLS**
+All the apis are present in `src/app/api` folder.
+
+--- API Folder --
+- In `api/(auth)` folder, login, logout and register api logic.
+- In `api/admin` folder, assignments assigned to admin, accepting and rejecting assignments logic.
+- In `api/user` folder, assignment upload and get all admins logic.
+- There are also some other folders like misc getToken which are used for better working of app.
+
+```auth```
+**Login**
+- In Login API, email and password are collected from request body. After collecting data, it is checked whether a user is present in database or not. if not present, then error is thrown else password is checked (if it's wrong or not) using bcrypt dependency. If yes, Token is created and it's value is stored in cookies else error.
+
+**Register**
+- In Register API, data is collected from request body. After collecting data, it is checked whether a user is present in database with same email. if yes, then error is thrown else password is crypted using bcrypt dependency. Then user is saved in database according to type(user or admin).
+
+**Logout**
+- Token value is set to empty string
+
+```admin```
+**Assigned Assignments**
+- Admin id is sent from frontend through params. Using that id, database is searched and all assigned assignments are extracted.
+  
+**Accept/Reject Assignmnets**
+- In database, an entry isRejected: string is created which can take only three values '1','2','3'. By default, it is set to '1' which means no action is taken.
+- In accepting the assignment, assignment and admin are being searched using their respective ids. After founding the entry, isRejected is set to '2'.
+- In rejecting the assignment, assignment and admin are being searched using their respective ids. After founding the entry, isRejected is set to '3'.
+
+```user```
+**Upload**
+- Data is sent to backend which contains assignment, admin id and user name. An entry is created using the post request into the database.
+
+**Get Admins**
+- Using get request all the admins are searhed.
+
+# FRONTEND
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Main Page**
+On Main Page, you will get the Login / Register Button. Upon clicking on it, you will be redirected to Login Page. If you haven't created an account click on Create New Account.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Creating New Account**
+Enter all the details required for creating the account. If you want to create an ADMIN Account, click on Create Admin Account. For this specific project, admin account creation link is public. Follow similar steps to create the admin account.
 
-## Learn More
+**Login to your account**
+After account creation you will be redirected to login page. Enter the details to login.
 
-To learn more about Next.js, take a look at the following resources:
+**Post Login**
+```For User Account```
+-- if you are user, you will see two buttons, one for logout and another to go to profile section. On clicking Logout you will be Logged out
+-- On clicking profile button, you will be redirected to profile page. Profile Page is divided into two parts, in left one you can submit your assignment and assign the admin. In right section, all of your assignmnets and their status will be displayed.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-
-
+```For Admin Account```
+-- if you are an admin, you will see two buttons, one for logout and another to go to dashboard. On clicking Logout you will be Logged out
+-- On clicking dashboard button, you will be redirected to dashboard page. On Dashboard Page, all of your assigned assignmnets and their status will be displayed. You will have the option to reject and accept the assignments.
