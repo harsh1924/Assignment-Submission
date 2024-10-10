@@ -3,6 +3,7 @@
 import { LoginButtons } from "@/app/components/Buttons/LoginButton";
 import LoadingState from "@/app/components/LoadingState";
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -98,8 +99,11 @@ const AdminDashboard = () => {
                     )}
                 </div>
             )}
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center gap-6">
                 <LoginButtons />
+                <Link href={'/'} className="rounded-md px-10 py-[10px] bg-[#0056d2] text-white source-sans-3-regular text-xl hover:bg-[#00419e] transition-all ease-in-out duration-300">
+                    Home
+                </Link>
             </div>
         </div>
     );

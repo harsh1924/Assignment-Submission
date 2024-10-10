@@ -3,6 +3,7 @@
 import { LoginButtons } from "@/app/components/Buttons/LoginButton";
 import LoadingState from "@/app/components/LoadingState";
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -114,6 +115,9 @@ const ProfilePage = () => {
                                     Submit Your Assignment
                                 </button>
                             </div>
+                            <Link href={'/'} className="rounded-md px-10 py-[10px] border border-[#0056d2] source-sans-3-regular text-xl text-[#00419e]">
+                                Home
+                            </Link>
                         </form>
 
                     </div>

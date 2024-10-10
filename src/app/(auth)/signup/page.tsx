@@ -48,7 +48,10 @@ export default function SignInPage() {
 
     return (
         <div className="h-screen flex items-center justify-center">
-            <form onSubmit={onSignup}>
+            <form onSubmit={onSignup} className="flex flex-col gap-6">
+                <Link href={'/'} className="source-sans-3-bold text-lg text-center">
+                    Home
+                </Link>
                 <div className="w-[400px] shadow-[0_0_10px_#347dfb] px-6 py-4 flex flex-col gap-y-4">
                     <h2 className="source-sans-3-semibold text-xl">
                         Create Your Account
