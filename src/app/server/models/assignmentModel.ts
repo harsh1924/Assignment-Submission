@@ -5,6 +5,7 @@ const assignmentSchema = new Schema({
         type: String,
         required: [true, 'Please provide user name'],
     },
+    userId: String,
     adminName: {
         type: String,
         required: [true, 'Please provide admin name'],
@@ -13,7 +14,6 @@ const assignmentSchema = new Schema({
         type: String,
         required: [true, "Please provide admin name"],
     },
-    userId: String,
     assignmentText: {
         type: String,
         required: [true, 'Please provide assignment'],

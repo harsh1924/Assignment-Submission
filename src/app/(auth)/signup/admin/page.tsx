@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 
 export default function AdminSignInPage() {
 
+    // State Management
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
     const [user, setUser] = useState({
@@ -19,6 +20,7 @@ export default function AdminSignInPage() {
         type: 'ADMIN'
     });
 
+    // Handle User Input
     const handleUserInput = (event: { target: { name: any; value: any; }; }) => {
         const { name, value } = event.target;
         setUser({
@@ -27,6 +29,7 @@ export default function AdminSignInPage() {
         });
     };
 
+    // API Call to create user
     const onSignup = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         try {

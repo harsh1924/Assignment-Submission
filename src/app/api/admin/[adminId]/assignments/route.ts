@@ -5,7 +5,10 @@ export async function GET(request: NextRequest, {
     params }: { params: { adminId: string } }
 ) {
     try {
+        // getting admin id fro mparams
         const adminId = params.adminId;
+
+        // searching admin account in the database
         const assignments = await assignmentModel.find({
             'admin': adminId
         });

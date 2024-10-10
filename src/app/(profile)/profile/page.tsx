@@ -58,8 +58,12 @@ const ProfilePage = () => {
         e.preventDefault();
         try {
             const res = await axios.post('/api/user/upload', data);
-            if (res) toast.success('Assignment Submitted');
-            router.refresh();
+            if (res) {
+                toast.success('Assignment Submitted');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 100);
+            }
         } catch (error: any) {
             toast.error(error.response.data.error);
         }

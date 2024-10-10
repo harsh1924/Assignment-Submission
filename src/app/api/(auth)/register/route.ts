@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
         const reqBody = await request.json();
         const { name, email, password, type } = reqBody;
 
-        //error handling
+        // error handling
         if (!name || !password || !email) {
             return NextResponse.json({ error: 'Please provide all the details' }, { status: 400 })
         }
@@ -24,11 +24,13 @@ export async function POST(request: NextRequest) {
             }, { status: 400 })
         }
 
-        //hashing password
+        // hashing password
         const salt = await bcryptjs.genSalt(10);
         const hashedPassword = await bcryptjs.hash(password, salt);
 
-        if (reqBody.type == 'ADMIN') {
+        // checking the type of request. Is it for admin or user
+        if (type == 'ADMIN') {
+            // if admin creating admin account
             const user = new userModel({
                 name,
                 email,
@@ -42,6 +44,7 @@ export async function POST(request: NextRequest) {
                 user
             }, { status: 201 });
         } else {
+            // if user creating user account
             const user = new userModel({
                 name,
                 email,
@@ -55,8 +58,6 @@ export async function POST(request: NextRequest) {
                 user
             }, { status: 201 });
         }
-
-
 
     } catch (error: any) {
         return NextResponse.json({ error: error.message },

@@ -7,6 +7,7 @@ export async function GET() {
             success: true
         });
         
+        // setitin token value to empty string
         response.cookies.set("token", "", { httpOnly: true });
         return response;
     } catch (error: any) {

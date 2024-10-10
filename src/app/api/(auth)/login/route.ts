@@ -32,8 +32,9 @@ export async function POST(request: NextRequest) {
             email: user.email,
             role: user.role
         }
+
         // create token
-        const token = await jwt.sign(tokenData, `${process.env.JWT_SECRET}`!, { expiresIn: '1d' });
+        const token = await jwt.sign(tokenData, `GrowthXSECRETkey$123`, { expiresIn: '1d' });
 
         const response = NextResponse.json({
             message: 'Login Successfull',
@@ -41,12 +42,13 @@ export async function POST(request: NextRequest) {
             user
         })
 
+        // setting token to the cookies
         response.cookies.set('token', token, {
             httpOnly: true,
             path: '/',
             secure: true,
             sameSite: "strict",
-            maxAge: 7 * 24 * 60 * 60 * 1000,
+            maxAge: 24 * 60 * 60 * 1000,
         });
 
         return response;

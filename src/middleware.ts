@@ -24,9 +24,6 @@ export const config = {
 
     // PRIVATE PAGES
     '/profile/:path*',
-    '/user/:path*',
-    '/admin/:path*',
-    '/courses/:path*',
-    '/:path*/purchase'
+    '/dashboard/:path*',
   ]
 }

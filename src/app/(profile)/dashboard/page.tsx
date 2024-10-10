@@ -61,6 +61,11 @@ const AdminDashboard = () => {
                 <LoadingState />
             ) : (
                 <div className="flex flex-col  px-40 py-10 gap-4">
+                    <div className="flex gap-20 source-sans-3-bold">
+                        <div className="w-64">User Name</div>
+                        <div className="w-64">Task</div>
+                        <div className="w-64">Accepted / Rejected</div>
+                    </div>
                     {assignments.map((e: { admin: string; assignmentText: string; userName: string; isRejected: string; _id: string }) =>
                         <div className="flex gap-20 items-center">
                             <div className="w-64">
@@ -71,10 +76,10 @@ const AdminDashboard = () => {
                             </div>
                             {e.isRejected === '1' && (
                                 <div className="flex gap-x-10">
-                                    <button className="text-white bg-green-600 px-4 py-2 rounded-md" onClick={() => acceptAssignment(e._id)}>
+                                    <button className="text-green-600 border border-green-600 px-4 py-2 rounded-md" onClick={() => acceptAssignment(e._id)}>
                                         Accept
                                     </button>
-                                    <button className="text-white bg-red-600 px-4 py-2 rounded-md" onClick={() => rejectAssignment(e._id)}>
+                                    <button className="text-red-600 border border-red-600 px-4 py-2 rounded-md" onClick={() => rejectAssignment(e._id)}>
                                         Reject
                                     </button>
                                 </div>
