@@ -61,10 +61,10 @@ const AdminDashboard = () => {
                 <LoadingState />
             ) : (
                 <div className="flex flex-col  px-40 py-10 gap-4">
-                    {assignments.map((e: { admin: string; assignmentText: string; _id: string; isRejected: string }) =>
+                    {assignments.map((e: { admin: string; assignmentText: string; userName: string; isRejected: string; _id: string }) =>
                         <div className="flex gap-20 items-center">
                             <div className="w-64">
-                                {e._id}
+                                {e.userName}
                             </div>
                             <div className="w-64">
                                 {e.assignmentText}
