@@ -70,7 +70,7 @@ export const LoginButtons = () => {
                         {isLoggedIn && (
                             <div>
                                 <Link href={'/login'}>
-                                    <span className="rounded-md px-10 py-[16px] bg-[#0056d2] text-white source-sans-3-bold hover:bg-[#00419e] transition-all ease-in-out duration-300">
+                                    <span className="bg-[#0056d2] hover:bg-[#00419e] px-10 py-[16px] rounded-md text-white transition-all duration-300 ease-in-out source-sans-3-bold">
                                         Login / Register
                                     </span>
                                 </Link>
@@ -80,15 +80,15 @@ export const LoginButtons = () => {
                     <div>
                         {!isLoggedIn && (
                             <div className="flex gap-x-6">
-                                <button className="rounded-md px-10 py-[10px] bg-[#0056d2] text-white source-sans-3-regular text-xl hover:bg-[#00419e] transition-all ease-in-out duration-300" onClick={logout}>
+                                <button className="bg-[#0056d2] hover:bg-[#00419e] px-10 py-[10px] rounded-md text-white transition-all duration-300 ease-in-out source-sans-3-regular" onClick={logout}>
                                     Logout
                                 </button>
                                 {isAdmin ? (
-                                    <Link href={'/dashboard'} className="rounded-md px-10 py-[10px] bg-[#0056d2] text-white source-sans-3-regular text-xl hover:bg-[#00419e] transition-all ease-in-out duration-300">
+                                    <Link href={'/dashboard'} className="bg-[#0056d2] hover:bg-[#00419e] px-10 py-[10px] rounded-md text-white transition-all duration-300 ease-in-out source-sans-3-regular">
                                         Dashboard
                                     </Link>
                                 ) : (
-                                    <Link href={'/profile'} className="rounded-md px-10 py-[10px] bg-[#0056d2] text-white source-sans-3-regular text-xl hover:bg-[#00419e] transition-all ease-in-out duration-300">
+                                    <Link href={'/profile'} className="bg-[#0056d2] hover:bg-[#00419e] px-10 py-[10px] rounded-md text-white transition-all duration-300 ease-in-out source-sans-3-regular">
                                         Profile
                                     </Link>
                                 )}

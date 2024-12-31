@@ -7,6 +7,17 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
+import { Navbar } from "@/app/components/Navbar";
+
 
 const AdminDashboard = () => {
 
@@ -61,50 +72,69 @@ const AdminDashboard = () => {
             {isLoading ? (
                 <LoadingState />
             ) : (
-                <div className="flex flex-col  px-40 py-10 gap-4">
-                    <div className="flex gap-20 source-sans-3-bold">
-                        <div className="w-64">User Name</div>
-                        <div className="w-64">Task</div>
-                        <div className="w-64">Accepted / Rejected</div>
+                <div className="">
+                    <Navbar />
+                    <div className="flex justify-center items-center pt-10 max-h-screen">
+                        <Table className="mx-auto border rounded-sm w-[90%]">
+                            <TableCaption>All Assignments</TableCaption>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead className="w-[100px]">
+                                        User Name
+                                    </TableHead>
+                                    <TableHead className="text-center">
+                                        Task
+                                    </TableHead>
+                                    <TableHead className="text-center">
+                                        Accepted/Rejected
+                                    </TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {assignments.map((e: { admin: string; assignmentText: string; userName: string; isRejected: string; _id: string }) =>
+                                    <TableRow>
+                                        <TableCell className="font-medium">
+                                            {e.userName}
+                                        </TableCell>
+                                        <TableCell className="text-center">
+                                            {e.assignmentText}
+                                        </TableCell>
+                                        <TableCell className="text-center">
+                                            {e.isRejected === '1' && (
+                                                <div>
+                                                    <button className="border-green-600 px-4 py-2 border rounded-md text-green-600" onClick={() => acceptAssignment(e._id)}>
+                                                        Accept
+                                                    </button>
+                                                    <button className="px-4 py-2 border border-red-600 rounded-md text-red-600" onClick={() => rejectAssignment(e._id)}>
+                                                        Reject
+                                                    </button>
+                                                </div>
+                                            )}
+                                            {e.isRejected === '2' && (
+                                                <div className="bg-green-600 px-4 py-2 rounded-md text-white">
+                                                    Accepted
+                                                </div>
+                                            )}
+                                            {e.isRejected === '3' && (
+                                                <div className="bg-red-600 px-4 py-2 rounded-md text-white">
+                                                    Rejected
+                                                </div>
+                                            )}</TableCell>
+                                    </TableRow>
+
+
+                                )}
+                            </TableBody>
+                        </Table>
                     </div>
-                    {assignments.map((e: { admin: string; assignmentText: string; userName: string; isRejected: string; _id: string }) =>
-                        <div className="flex gap-20 items-center">
-                            <div className="w-64">
-                                {e.userName}
-                            </div>
-                            <div className="w-64">
-                                {e.assignmentText}
-                            </div>
-                            {e.isRejected === '1' && (
-                                <div className="flex gap-x-10">
-                                    <button className="text-green-600 border border-green-600 px-4 py-2 rounded-md" onClick={() => acceptAssignment(e._id)}>
-                                        Accept
-                                    </button>
-                                    <button className="text-red-600 border border-red-600 px-4 py-2 rounded-md" onClick={() => rejectAssignment(e._id)}>
-                                        Reject
-                                    </button>
-                                </div>
-                            )}
-                            {e.isRejected === '2' && (
-                                <div className="text-white bg-green-600 px-4 py-2 rounded-md">
-                                    Accepted
-                                </div>
-                            )}
-                            {e.isRejected === '3' && (
-                                <div className="text-white bg-red-600 px-4 py-2 rounded-md">
-                                    Rejected
-                                </div>
-                            )}
-                        </div>
-                    )}
                 </div>
             )}
-            <div className="flex items-center justify-center gap-6">
+            {/* <div className="flex justify-center items-center gap-6">
                 <LoginButtons />
-                <Link href={'/'} className="rounded-md px-10 py-[10px] bg-[#0056d2] text-white source-sans-3-regular text-xl hover:bg-[#00419e] transition-all ease-in-out duration-300">
+                <Link href={'/'} className="bg-[#0056d2] hover:bg-[#00419e] px-10 py-[10px] rounded-md text-white transition-all duration-300 ease-in-out source-sans-3-regular">
                     Home
                 </Link>
-            </div>
+            </div> */}
         </div>
     );
 }

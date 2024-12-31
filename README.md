@@ -30,7 +30,7 @@ bun dev
 
 **API CALLS**
 All the apis are present in `src/app/api` folder.
-
+********
 --- API Folder --
 - In `api/(auth)` folder, login, logout and register api logic is implemented.
 - In `api/admin` folder, assignments assigned to admin, accepting and rejecting assignments logic is implemented.

@@ -2,6 +2,7 @@
 
 import { LoginButtons } from "@/app/components/Buttons/LoginButton";
 import LoadingState from "@/app/components/LoadingState";
+import { Navbar } from "@/app/components/Navbar";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -80,77 +81,74 @@ const ProfilePage = () => {
                     <LoadingState />
                 </div>
             ) : (
-                <div className="flex items-center">
-                    <div className="flex flex-col justify-center items-center h-screen gap-y-6 w-1/2">
-                        <div>
-                            <LoginButtons />
-                        </div>
-                        <form className="flex flex-col items-center justify-center gap-y-3" onSubmit={onSubmit}>
-                            <div className="flex flex-col  justify-center px-10 py-6 gap-y-3 shadow-lg">
-                                <div className="source-sans-3-bold text-xl">
-                                    USER: {userNameData}
-                                </div>
-                                <div className="flex flex-col gap-y-2">
-                                    <label htmlFor="assignment" className="source-sans-3-bold text-xl">
-                                        Task
-                                    </label>
-                                    <textarea name="assignmentText" value={data.assignmentText} id="assignment" placeholder="Write Your Assignment Here...." className="border rounded-md px-4 py-2 outline-none h-[150px] w-[300px] resize-none" onChange={handleUserInput} />
-                                </div>
-                                <div className="flex flex-col">
-                                    <label htmlFor="adminId">
-                                        Select Admin to assign the task
-                                    </label>
-                                    <select name="admin" id="adminId" className="p-2 border rounded-md text-[13px] outline-none" onChange={handleUserInput} value={data.admin}>
-                                        <option value='{e.name}'>
-                                            Select Admin
-                                        </option>
-                                        {admins.map((e: { name: string; _id: string }) =>
-                                            <option key={e._id} value={e._id}>
-                                                {e.name}
+                <div className="">
+                    <Navbar />
+                    <div className="flex py-6">
+                        <div className="w-1/2">
+                            <form className="flex flex-col items-center gap-y-3" onSubmit={onSubmit}>
+                                <div className="flex flex-col gap-y-3 shadow-lg px-10 py-6">
+                                    <div className="text-xl source-sans-3-bold">
+                                        USER: {userNameData}
+                                    </div>
+                                    <div className="flex flex-col gap-y-2">
+                                        <label htmlFor="assignment" className="text-xl source-sans-3-bold">
+                                            Task
+                                        </label>
+                                        <textarea name="assignmentText" value={data.assignmentText} id="assignment" placeholder="Write Your Assignment Here...." className="px-4 py-2 border rounded-md w-[300px] h-[150px] outline-none resize-none" onChange={handleUserInput} />
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <label htmlFor="adminId">
+                                            Select Admin to assign the task
+                                        </label>
+                                        <select name="admin" id="adminId" className="p-2 border rounded-md text-[13px] outline-none" onChange={handleUserInput} value={data.admin}>
+                                            <option value='{e.name}'>
+                                                Select Admin
                                             </option>
-                                        )}
-                                    </select>
+                                            {admins.map((e: { name: string; _id: string }) =>
+                                                <option key={e._id} value={e._id}>
+                                                    {e.name}
+                                                </option>
+                                            )}
+                                        </select>
+                                    </div>
+                                    <button className="bg-[#0056d2] hover:bg-[#00419e] px-10 py-[16px] rounded-md w-full text-white transition-all duration-300 ease-in-out source-sans-3-bold" type="submit">
+                                        Submit Your Assignment
+                                    </button>
                                 </div>
-                                <button className="rounded-md px-10 py-[16px] bg-[#0056d2] text-white source-sans-3-bold hover:bg-[#00419e] transition-all ease-in-out w-full duration-300" type="submit">
-                                    Submit Your Assignment
-                                </button>
-                            </div>
-                            <Link href={'/'} className="rounded-md px-10 py-[10px] border border-[#0056d2] source-sans-3-regular text-xl text-[#00419e]">
-                                Home
-                            </Link>
-                        </form>
+                            </form>
 
-                    </div>
-                    <div className="h-screen w-[1px] bg-gray-600"></div>
-                    <div className="w-1/2 h-screen overflow-scroll no-scrollbar">
-                        <span className="source-sans-3-bold flex items-center justify-center pb-10 text-xl">
-                            All Assignments
-                        </span>
-                        <div className="flex flex-col">
-                            {userAssignments.map((e: { assignmentText: string; isRejected: string }) =>
-                                <div className="flex px-10 gap-x-40 source-sans-3-regular gap-y-6">
-                                    <span className="w-1/2">
-                                        {e.assignmentText}
-                                    </span>
-                                    <span className="flex w-1/2">
-                                        {e.isRejected === '1' && (
-                                            <div className="text-white bg-blue-600 px-4 py-2 rounded-md mb-6">
-                                                Submitted
-                                            </div>
-                                        )}
-                                        {e.isRejected === '2' && (
-                                            <div className="text-white bg-green-600 px-4 py-2 rounded-md mb-6">
-                                                Accepted
-                                            </div>
-                                        )}
-                                        {e.isRejected === '3' && (
-                                            <div className="text-white bg-red-600 px-4 py-2 rounded-md mb-6">
-                                                Rejected
-                                            </div>
-                                        )}
-                                    </span>
-                                </div>
-                            )}
+                        </div>
+                        <div className="bg-gray-400 w-[1px] h-screen"></div>
+                        <div className="w-1/2 h-screen overflow-scroll no-scrollbar">
+                            <span className="flex justify-center items-center pb-10 text-xl source-sans-3-bold">
+                                All Assignments
+                            </span>
+                            <div className="flex flex-col">
+                                {userAssignments.map((e: { assignmentText: string; isRejected: string }) =>
+                                    <div className="flex items-center gap-x-40 gap-y-6 px-10 border-b source-sans-3-regular">
+                                        <span className="w-1/2">
+                                            {e.assignmentText}
+                                        </span>
+                                        <span className="flex justify-center items-center py-2 w-1/2 max-h-screen">
+                                            {e.isRejected === '1' && (
+                                                <div className="bg-blue-600 px-4 py-2 rounded-md text-white">
+                                                    Submitted
+                                                </div>
+                                            )}
+                                            {e.isRejected === '2' && (
+                                                <div className="bg-green-600 px-4 py-2 rounded-md text-white">
+                                                    Accepted
+                                                </div>
+                                            )}
+                                            {e.isRejected === '3' && (
+                                                <div className="bg-red-600 px-4 py-2 rounded-md text-white">
+                                                    Rejected
+                                                </div>
+                                            )}
+                                        </span>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
