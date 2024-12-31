@@ -21,7 +21,7 @@ export const LoginButtons = () => {
         try {
             const res = await axios.get('/api/getToken');
             const token = res.data.token;
-            if (token !== '') { //\"\"
+            if (token !== '\"\"') {
                 setIsLoggedIn(false);
                 getId()
             }
